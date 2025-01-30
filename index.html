@@ -45,7 +45,7 @@
 
     </style>
   </head>
-  <body>
+  <body class="mx-auto contaner">
 <!-- Navbar -->
     <nav class="bg-gray-800">
       <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -60,9 +60,7 @@
             >
               <span class="absolute -inset-0.5"></span>
               <span class="sr-only">Open main menu</span>
-              <!--
-                  Icon when menu is closed.
-      
+              <!--on when menu is closed.   
                   Menu open: "hidden", Menu closed: "block"
                 -->
               <svg
@@ -259,29 +257,38 @@
       </div>
     </nav>
 
-<!-- Search Box -->
-    <div class="w-full max-w-sm mx-auto mt-5">
-      <div class="flex items-center">
-        <input
-        id="search-box"
-          type="text"
-          placeholder="Search..."
-          class="w-full px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <button id="search" type="submit"
-        class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-r-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Search</button>
-      </div>
+<main class="max-w-7xl mx-auto">
+  <!-- Search Box -->
+  <div class="w-full max-w-sm mx-auto mt-5">
+    <div class="flex items-center">
+      <input
+      id="search-box"
+        type="text"
+        placeholder="Search..."
+        class="w-full px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <button id="search" type="submit"
+      class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-r-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Search</button>
     </div>
+  </div>
 
 <!-- Spinner  -->
-    <div class=" flex py-4 justify-center items-center">
-    <div id="spinner"></div>
-    </div>
- 
+  <div class=" flex py-4 justify-center items-center">
+  <div id="spinner"></div>
+  </div>
+  <!-- All Phone show in this container -->
+   <div id="phones-container" class="phones-container flex justify-around items-center flex-wrap">
+    
+   </div>
+  
+  <!-- Show all Button -->
+  <div class="text-center py-3">
+  <button onclick="handleShowAll()" id="show-all" class="btn bg-red-500 ">Show all</button>
+  </div>
 
 
-
-     
+   
+</main>
 
     <!-- footer  -->
     <div class="mt-12">
