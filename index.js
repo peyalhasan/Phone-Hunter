@@ -2,13 +2,16 @@ const loadAllPhones = async (status, brandName) =>{
 
     document.getElementById('spinner').style.display='none';
 
-    const response = await fetch(`https://openapi.programming-hero.com/api/phones?search=${brandName? brandName : "iphone"}`);
+    const response = await fetch(`https://openapi.programming-hero.com/api/phones?search=${brandName? brandName :"iphone"}`);
     const data = await response.json();
 
     if(status){
         displayAllPhone(data.data);
     }
     else{
+        if(brandName){
+            displayAllPhone(data.data)
+        }
         displayAllPhone(data.data.slice(0,6));
     }
 }
@@ -16,6 +19,12 @@ const loadAllPhones = async (status, brandName) =>{
 // Display All phones 
 const displayAllPhone = (phones) =>{
     const phoneContainer = document.getElementById('phones-container');
+    phoneContainer.innerHTML = '';
+
+    if(phones.length === 0){
+        phoneContainer.innerHTML = `<p>No Phone Found. Please try a new search.</p>`;
+        return;
+    }
     phones.forEach( (phone) => {
         //Distructuring 
         const {brand, image, slug} = phone;
@@ -44,15 +53,35 @@ const displayAllPhone = (phones) =>{
 // Show All Phones 
 
 const handleShowAll = () =>{
-    loadAllPhones(true)
+    const searchText = document.getElementById('search-box').value;
+    loadAllPhones(true, searchText)
 }
 
 // Show Phone Details 
 
 const phoneDetails = async (phone) =>{
+
     const response = await fetch(`https://openapi.programming-hero.com/api/phone/${phone}`);
     const data = await response.json();
-    console.log(data.data)
+
+    const {name,brand,image,slug } = data.data;
+
+    const modalContainer = document.getElementById('my_modal_1');
+    modalContainer.innerHTML = `
+    <div class="modal-box">
+        <img src='${image}' />
+        <h3 class="text-lg font-bold">${name}</h3>
+        <h3 class="text-lg font-bold">${brand}</h3>
+        <p class="py-4">${slug}</p>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+          </form>
+        </div>
+    </div>
+    `
+    my_modal_1.showModal()
 }
 
 document.getElementById('search').addEventListener('click',()=>{
